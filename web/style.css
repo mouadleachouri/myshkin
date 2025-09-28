@@ -1,0 +1,15 @@
+html {
+  background-color: white;
+}
+
+#header {
+  background-color: #ff7e66;
+  font-size: 1.7em;
+  padding: 0.7em 0.7em 0.7em 0.7em;
+}
+
+#menu {
+  background-color: #ff461f;
+  font-size: 1.4em;
+  padding: 0.3em 0.3em 0.3em 0.3em;
+}
