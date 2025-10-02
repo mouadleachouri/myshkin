@@ -1,0 +1,10 @@
+#!/bin/sh
+
+header=$(sed -n '1p' "$1")
+echo "$header" | grep -qE "^(feat|fix|docs|refactor)(\([a-z0-9_]{1,20}\))?: [a-z].{0,78}[^\.[:space:]]$" || exit 1
+newline=$(sed -n '2p' "$1")
+echo "$newline" | grep -qE "^$" || exit 1
+bodystart=$(sed -n '3p' "$1")
+echo "$bodystart" | grep -qE "[[:print:]]" || exit 1
+#espace fin ligne
+
