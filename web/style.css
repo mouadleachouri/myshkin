@@ -23,15 +23,56 @@ html {
 
 #mainTitle {
   font-weight: bold;
-  margin: 0 2em;         
+  margin: 0 2em;
   text-decoration: none;
   color: #0f964c;
 }
 
-#main {
+#home.main {
   max-width: 800px;
   padding: 2em;
   margin: 1.5em auto;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start;
+}
+
+#page.main {
+  margin: 1.5em auto;
+  padding: 2em;
+  max-width: 800px;
+  flex: 1;
+}
+
+.sidebar {
+  font-size: 1.15em;
+  border-right: solid;
+  border-color: #0f964c;
+  border-width: 1px;
+  height: 100%;
+  width: 180px;
+  z-index: 1;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  padding: 6px 8px 6px 26px;
+  display: block;
+  color: inherit;
+  margin-bottom: 1em;
+}
+
+.sidebar a:hover {
+  background-color: #dcfcee;
+}
+
+.sidebar a:active {
+  font-weight: bold;
 }
 
 p {

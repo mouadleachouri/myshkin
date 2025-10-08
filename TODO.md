@@ -7,6 +7,8 @@
 - [x] (deadline: 25-10-03) Add commit lint bash script.
 - [x] (deadline: 25-10-05) Fix HTML links.
 - [ ] (deadline: 25-10-05) Fix git hooks.
-- [ ] (deadline: 25-10-05) Install an HTML linter.
+- [ ] (deadline: 25-10-08) Install an HTML linter.
 - [x] (deadline: 25-10-07) Isolate color palette in a file.
-- [ ] (deadline: 25-10-07) Add side-bars.
+- [ ] (deadline: 25-10-08) Add side-bars.
+- [ ] (deadline: 25-10-08) Add side-bars links.
+- [ ] (deadline: 25-10-08) Organize css file.
