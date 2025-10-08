@@ -1,18 +1,13 @@
-html {
-  background-color: white;
-  font-size: 18px;
-}
-
 #header {
   background-color: #dcfcee;
   font-size: 1.3em;
-  padding: 0.7em 0.7em 0.7em;
+  padding: 0.7em;
 }
 
 #menu {
   background-color: #0f964c;
   font-size: 1.1em;
-  padding: 0.3em 0.3em 0.3em;
+  padding: 0.3em;
 }
 
 #menu a {
@@ -23,15 +18,15 @@ html {
 
 #mainTitle {
   font-weight: bold;
-  margin: 0 2em;
+  margin: 0em 2em 0em 2em;
   text-decoration: none;
   color: #0f964c;
 }
 
 #home.main {
-  max-width: 800px;
-  padding: 2em;
-  margin: 1.5em auto;
+  max-width: 1000px;
+  padding: 10px 2em 10px 2em;
+  margin: 0 auto;
 }
 
 .container {
@@ -40,31 +35,27 @@ html {
 }
 
 #page.main {
-  margin: 1.5em auto;
-  padding: 2em;
-  max-width: 800px;
+  max-width: 1000px;
+  padding: 10px 2em 10px 2em;
+  margin: 0 auto;
   flex: 1;
 }
 
 .sidebar {
-  font-size: 1.15em;
+  font-size: 1.1em;
   border-right: solid;
   border-color: #0f964c;
   border-width: 1px;
-  height: 100%;
-  width: 180px;
-  z-index: 1;
-  left: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
+  width: 150px;
+  padding-top: 10px;
 }
 
 .sidebar a {
   text-decoration: none;
-  padding: 6px 8px 6px 26px;
+  padding: 6px 26px 6px 26px;
   display: block;
   color: inherit;
-  margin-bottom: 1em;
+  margin: 0.5em 0em;
 }
 
 .sidebar a:hover {
@@ -85,7 +76,7 @@ p a:link {
 }
 
 p a:hover {
-  color: #0f964c;
+  color: #dcfcee;
 }
 
 p a:visited {
@@ -93,5 +84,5 @@ p a:visited {
 }
 
 p a:active {
-  color: #ab039a;
+  font-weight: bold;
 }
