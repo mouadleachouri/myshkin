@@ -1,18 +1,13 @@
-html {
-  background-color: white;
-  font-size: 18px;
-}
-
 #header {
   background-color: #dcfcee;
-  font-size: 1.3em;
-  padding: 0.7em 0.7em 0.7em;
+  font-size: 1.4em;
+  padding: 0.7em;
 }
 
 #menu {
   background-color: #0f964c;
   font-size: 1.1em;
-  padding: 0.3em 0.3em 0.3em;
+  padding: 0.3em;
 }
 
 #menu a {
@@ -21,17 +16,61 @@ html {
   color: inherit;
 }
 
-#mainTitle {
+#mainTitle,
+#icon {
   font-weight: bold;
-  margin: 0 2em;         
+  margin: 0em 2em 0em 2em;
   text-decoration: none;
   color: #0f964c;
 }
 
-#main {
-  max-width: 800px;
-  padding: 2em;
-  margin: 1.5em auto;
+#home.main {
+  max-width: 1000px;
+  padding: 10px 2em 10px 2em;
+  margin: 0 auto;
+}
+
+.right {
+  float: right;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start;
+}
+
+#page.main {
+  max-width: 1000px;
+  padding: 10px 2em 10px 2em;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.sidebar {
+  font-size: 1.1em;
+  border-right: solid;
+  border-color: #0f964c;
+  border-width: 1px;
+  width: 150px;
+  padding-top: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  padding: 6px 26px 6px 26px;
+  display: block;
+  color: inherit;
+  margin: 0.5em 0em;
+}
+
+.sidebar a:hover {
+  background-color: #dcfcee;
+}
+
+.sidebar a:active {
+  font-weight: bold;
 }
 
 p {
@@ -44,7 +83,7 @@ p a:link {
 }
 
 p a:hover {
-  color: #0f964c;
+  color: #dcfcee;
 }
 
 p a:visited {
@@ -52,5 +91,5 @@ p a:visited {
 }
 
 p a:active {
-  color: #ab039a;
+  font-weight: bold;
 }
