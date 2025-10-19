@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+  <head>
+    <title>myshkin: linux, art, science and more</title>
+    <link href="../../style.css" type="text/css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <div id="header">
+    <a id="mainTitle" href="../../index.html">Myshkin</a>
+    Linux, art, science and more
+    <span class="right"
+      ><a
+        id="icon"
+        class="fa fa-github"
+        href="https://github.com/mouadleachouri/myshkin"
+      ></a
+    ></span>
+  </div>
+
+  <div id="menu">
+    <a href="../../linux/index.html">Linux</a>
+    <a href="../../coding/index.html"><strong>Coding</strong></a>
+    <a href="../../vim/index.html">Vim</a>
+    <a href="../../culture/index.html">Culture</a>
+    <a href="../../voyage/index.html">Voyage</a>
+  </div>
+  <div class="container">
+    <div class="sidebar">
+      <a href="../sql/index.html">SQL</a>
+      <a href="../c/index.html">C</a>
+      <a href="../shell/index.html">Shell</a>
+      <a href="../python/index.html">Python</a>
+      <a href="index.html"><strong>Other</strong></a>
+    </div>
+
+    <div class="main" id="page">
+      <h1>Introduction</h1>
+      <p>
+        When using Unix utilities like grep, awk or sed, or when searching and
+        substituting patterns in Vim, I had to figure out what kind of regular
+        expressions each of them used. And it is a very challenging and rather
+        confusing task, since the syntax differs slightly from one software to
+        another and depends on whether the software uses basic or extended
+        regular expressions.
+      </p>
+      <p>
+        However, I later found out that most software that support regexp
+        implement a superset of the standards defined in POSIX. This is a quick
+        guide on the syntax of basic and extended regular expression, as defined
+        by the latter. And I consider it first and foremost a reference for
+        myself and will thus update it if I notice any mistakes or
+        incompatibility issues.
+      </p>
+      <h1>Definitions</h1>
+      <ul>
+        <li>
+          <strong>Character set:</strong> expression of the form
+          <code>[<em>expr</em>]</code>
+        </li>
+        <li>
+          <strong>Character class:</strong> expression of the form
+          <code>[:<em>name</em>:]</code> (e.g., <code>[:upper:]</code>)
+        </li>
+        <li>
+          <strong>Equivalence class:</strong> expression of the form
+          <code>[=<em>name</em>=]</code>. Represent letters that are equivalent
+          to the letter <em>name</em> in the locale (e.g.,
+          <code>[=a=]</code> for a, à or ä...).
+        </li>
+        <li>
+          <strong>Collating element:</strong> expression of the form
+          <code>[.<em>name</em>.]</code>. Represent sequences of letters that
+          are collated into one character depending on the locale (e.g.,
+          <code>[=ae=]</code>, <code>[=oe=]</code>)
+        </li>
+        <li>
+          <strong>Marked sub-expression:</strong> expression of the form
+          <code>(<em>expr</em>)</code> (BRE) or
+          <code>\(<em>expr</em>\)</code> (ERE). Used for grouping part of the
+          regular expression to apply repeating operators like *+?{} or for
+          backreference (only in BRE).
+        </li>
+        <li>
+          <strong>Atom:</strong> a single character, a marked sub-expression, or
+          a character class
+        </li>
+      </ul>
+      <h1>Extended RegExp (ERE)</h1>
+      <h2>Syntax</h2>
+      <table>
+        <tr>
+          <td><code>.</code></td>
+          <td>any single character except <code>NUL</code> and new line</td>
+        </tr>
+        <tr>
+          <td><code>[ ]</code></td>
+          <td>any single characters inside the brackets</td>
+        </tr>
+        <tr>
+          <td><code>[^ ]</code></td>
+          <td>any characters except the ones inside the brackets</td>
+        </tr>
+        <tr>
+          <td>
+            <code><em>x</em>-<em>y</em></code>
+          </td>
+          <td>
+            used within a character set: any single character within the range
+            from
+            <code><em>x</em></code> to <code><em>y</em></code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>[:<em>class</em>:]</code></td>
+          <td>
+            used within a character set: any character belonging to the
+            character class <code><em>class</em></code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>[:alnum:]</code></td>
+          <td>alphanumeric character</td>
+        </tr>
+        <tr>
+          <td><code>[:alpha:]</code></td>
+          <td>letter</td>
+        </tr>
+        <tr>
+          <td><code>[:blank:]</code></td>
+          <td>space and tabulation</td>
+        </tr>
+        <tr>
+          <td><code>[:cntrl:]</code></td>
+          <td>control character</td>
+        </tr>
+        <tr>
+          <td><code>[:digit:]</code></td>
+          <td>digit</td>
+        </tr>
+        <tr>
+          <td><code>[:graph:]</code></td>
+          <td>printable character and space</td>
+        </tr>
+        <tr>
+          <td><code>[:lower:]</code></td>
+          <td>lower case character</td>
+        </tr>
+        <tr>
+          <td><code>[:print:]</code></td>
+          <td>printable character</td>
+        </tr>
+        <tr>
+          <td><code>[:punct:]</code></td>
+          <td>punctuation character</td>
+        </tr>
+        <tr>
+          <td><code>[:space:]</code></td>
+          <td>white-space character</td>
+        </tr>
+        <tr>
+          <td><code>[:upper:]</code></td>
+          <td>upper case character</td>
+        </tr>
+        <tr>
+          <td><code>[:xdigit:]</code></td>
+          <td>hexadecimal digit</td>
+        </tr>
+        <tr>
+          <td><code>[.<em>col</em>.]</code></td>
+          <td>used within a character set: collating element</td>
+        </tr>
+        <tr>
+          <td><code>^</code></td>
+          <td>beginning of the line or of the sub-expression</td>
+        </tr>
+        <tr>
+          <td><code>$</code></td>
+          <td>end of the line or of the sub-expression</td>
+        </tr>
+        <tr>
+          <td><code>( )</code></td>
+          <td>marked subexpression</td>
+        </tr>
+        <tr>
+          <td><code>*</code></td>
+          <td>zero or more occurrences of the previous atom</td>
+        </tr>
+        <tr>
+          <td><code>+</code></td>
+          <td>one or more occurrences of the previous atom</td>
+        </tr>
+        <tr>
+          <td><code>|</code></td>
+          <td>either the preceding or the following expression</td>
+        </tr>
+        <tr>
+          <td><code>?</code></td>
+          <td>zero or one occurence of the last atom</td>
+        </tr>
+        <tr>
+          <td><code>{<em>m</em>,<em>n</em>}</code></td>
+          <td>
+            from <code><em>m</em></code> to <code><em>n</em></code> occurences
+            of the previous atom
+          </td>
+        </tr>
+        <tr>
+          <td><code>{<em>m</em>}</code></td>
+          <td>
+            <code><em>m</em></code> occurences of the previous atom
+          </td>
+        </tr>
+        <tr>
+          <td><code>{<em>m</em>,}</code></td>
+          <td>
+            <code><em>m</em></code> or more occurences of the previous atom
+          </td>
+        </tr>
+        <tr>
+          <td><code>{,<em>n</em>}</code></td>
+          <td>
+            <code><em>n</em></code> or less occurences of the previous atom
+          </td>
+        </tr>
+        <tr>
+          <td><code>\d</code></td>
+          <td>equivalent to <code>[[:digit:]]</code></td>
+        </tr>
+        <tr>
+          <td><code>\l</code></td>
+          <td>equivalent to <code>[[:lower:]]</code></td>
+        </tr>
+        <tr>
+          <td><code>\s</code></td>
+          <td>equivalent to <code>[[:space:]]</code></td>
+        </tr>
+        <tr>
+          <td><code>\u</code></td>
+          <td>equivalent to <code>[[:upper:]]</code></td>
+        </tr>
+        <tr>
+          <td><code>\D</code></td>
+          <td>equivalent to <code>[^[:digit:]]</code></td>
+        </tr>
+        <tr>
+          <td><code>\L</code></td>
+          <td>equivalent to <code>[^[:lower:]]</code></td>
+        </tr>
+        <tr>
+          <td><code>\S</code></td>
+          <td>equivalent to <code>[^[:space:]]</code></td>
+        </tr>
+        <tr>
+          <td><code>\U</code></td>
+          <td>equivalent to <code>[^[:upper:]]</code></td>
+        </tr>
+      </table>
+      <h2>Note</h2>
+      <p>
+        Backreferences (<code>\n</code> where <code>n</code> is a digit) are not
+        part of the POSIX ERE standard, as they don't satisfy the mathematical
+        definition of a regular expression. But some software include it as a
+        compatible extension to the standard.
+      </p>
+      <h1>Basic RegExp (BRE)</h1>
+      The main differences from ERE are that:
+      <ul>
+        <li>
+          The meta-characters <code>{)(</code> should be escaped with a
+          backslash.
+        </li>
+        <li>
+          The meta-characters <code>?+</code> should be escaped (though they're
+          not part of the POSIX BRE standard, some implementations allow them.
+          For strict POSIX-compliance, use the equivalent
+          <code>\{0,1\}</code> and <code>\{1,\}</code>).
+        </li>
+        <li>
+          Backreferences (references to previous sub-expressions) are allowed
+          (e.g., <code>\(abc\)\1</code> matches <code>abcabc</code>).
+        </li>
+      </ul>
+      <h1>Precedence</h1>
+      <ol>
+        <li>Collation-related bracket symbols <code>[==] [::] [..]</code></li>
+        <li>Escaped characters <code>\</code></li>
+        <li>Character set (bracket expression) <code>[]</code></li>
+        <li>Sub-expressions <code>()</code></li>
+        <li>
+          Single-character-ERE duplication
+          <code>* + ? {<em>m</em>,<em>n</em>}</code>
+        </li>
+        <li>Concatenation</li>
+        <li>Anchoring <code>^$</code></li>
+        <li>Alternation <code>|</code></li>
+      </ol>
+      <h1>Implementations</h1>
+      <ul>
+        <li>
+          Vim has a <code>magic</code> options that switches between BRE and RE
+          (kind of... type <code>:help magic</code> for details).
+        </li>
+        <li>
+          GNU grep support BRE and ERE (with the -E option). Also support's perl
+          (PCRE) (type <code>man grep</code> for details).
+        </li>
+        <li>
+          GNU awk: essentially the same as those in GNU grep with the -E option
+          (type <code>man gawk</code> for details).
+        </li>
+      </ul>
+      <h1>References</h1>
+      <ol>
+        <li>
+          <a href="https://pubs.opengroup.org/onlinepubs/9799919799/"
+            >The POSIX BRE and ERE specification (Section 9)</a
+          >
+        </li>
+      </ol>
+    </div>
+  </div>
+</html>
